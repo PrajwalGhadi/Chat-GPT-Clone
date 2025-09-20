@@ -1,0 +1,21 @@
+:root {
+  --color-background-drawer: #ffffff;
+  --color-text-primary: #333333;
+  --color-text-secondary: #1255db;
+  --color-text-icon: #555555;
+  --color-hover-state: #f0f0f0;
+  --color-border-separator: #eeeeee;
+  --color-button: #135bec;
+  --color-light-button: #10234a;
+  --font-family-base: "Roboto", sans-serif;
+  --shadow-drawer: 0 4px 8px rgba(0, 0, 0, 0.1);
+} /*# sourceMappingURL=index.css.map */
+
+@import "tailwindcss";
+
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, #136bec, #e86b6b, #101622);
+}
