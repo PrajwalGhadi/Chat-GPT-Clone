@@ -2,10 +2,14 @@ import { CiChat1 } from "react-icons/ci";
 import { MdHistory } from "react-icons/md";
 import { HiOutlineUser } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
+import clsx from "clsx";
+
+
+
 const Footer = () => {
   return (
     <>
-      <footer className="bg-[#101622] text-white flex justify-between items-center px-5 py-2 border-t-1 border-[#233763] fixed bottom-0 w-full text-lg min-h-5">
+      <footer className = {clsx("lg:hidden", "bg-[#101622] text-white flex justify-between items-center px-10 py-2 border-t-1 border-[#233763] fixed bottom-0 w-full text-lg min-h-5")}>
         <NavLink
           to="/"
           className={({ isActive }) =>
