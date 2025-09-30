@@ -45,7 +45,7 @@ function validateUserData({ username, email, password }) {
     validationErrors.push({ field: "email", errorMessage: "Invalid Email" });
   }
 
-  return validatetionErrors;
+  return validationErrors;
 }
 
 module.exports = validateUserData;

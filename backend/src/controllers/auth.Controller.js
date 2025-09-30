@@ -3,7 +3,7 @@ const chatModel = require("../models/chats.model");
 const messageModel = require("../models/messages.model");
 
 const bcrypt = require("bcrypt");
-const jws = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 
 // importing helper function to validate the user data
 const validateUserData = require("../utils/validateRegisterData");
@@ -21,7 +21,7 @@ async function registerUser(req, res) {
 
   try {
     // Find existing user (Database operation is inside try/catch)
-    let existingUser = await userModel.findOne({ email }); // Use shorthand { email }
+    let existingUser = await userModel.findOne({ username: username, email: email }); // Use shorthand { email }
 
     // Checking if user already exists
     if (existingUser) {
@@ -80,6 +80,7 @@ async function registerUser(req, res) {
 async function loginUser(req, res) {
   const { username, password } = req.body;
 
+
   // checking all the field are present or not
   if (!username || !password) {
     return res
@@ -88,8 +89,10 @@ async function loginUser(req, res) {
   }
 
   try {
-    const user = await userModel.findOne({ username: username });
-
+    // finding the user with the given username
+    const user = await userModel.findOne({ username: username }); 
+    
+    
     // if user is not present with the given username
     if (!user) {
       return res.status(401).json({
@@ -151,7 +154,28 @@ async function loginUser(req, res) {
   }
 }
 
+async function logoutUser(req, res) {
+  try {
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+
+    res.status(200).json({
+      status: "success",
+      message: "User logged out successfully",
+    });
+  } catch (error) {
+    console.log("Internal Server Error Occured for Logout", error);
+    res
+      .status(500)
+      .json({ message: "Internal Server Error Occured for Logout" });
+  }
+}
+
 module.exports = {
   registerUser,
   loginUser,
+  logoutUser,
 };
