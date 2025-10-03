@@ -4,7 +4,7 @@ import { BsSend } from "react-icons/bs";
 
 const FormInput = () => {
   return (
-    <form action="" className={clsx("fixed bottom-22 w-full px-5", "lg:w-[70vw] lg:bottom-15")}>
+    <form action="" className={clsx("fixed bottom-22 w-full px-5", "lg:w-[70vw] lg:bottom-25")}>
       <textarea
         type="text"
         placeholder="Message..."
